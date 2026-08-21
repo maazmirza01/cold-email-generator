@@ -63,9 +63,9 @@ def email_receiver(instructions, prompts): # Submits the prompt while passing sy
 
 def csv_creator(businesses, emails): # creates csv with emails and email copies
     final_list = []
-    final_dict = {}
     count = 0
     for business in businesses:
+        final_dict = {}
         final_dict["name"] = business["name"]
         final_dict["address"] = business["address"]
         final_dict["email_address"] = business["email"]
@@ -77,9 +77,6 @@ def csv_creator(businesses, emails): # creates csv with emails and email copies
         writer = csv.DictWriter(csv_file, fieldnames=["name", "address", "email_address", "email_copy"])
         for dict in final_list:
             writer.writerow(dict)
-
-
-
 
 
 

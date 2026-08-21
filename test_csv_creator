@@ -1,0 +1,70 @@
+from main import csv_creator
+from main import dict_creator
+import csv
+
+emails = ["""Hey,
+
+I came across Stonecraft Interiors recently, and I have to say your branding and color choices are really unique—you can easily see the amount of care and thought that went into shaping your visual identity. 
+
+After six years of building a strong word-of-mouth reputation, the one thing missing is a digital home for all that work. Right now, anyone who hears about your residential renovations and custom furniture fittings and goes looking for you online only finds a Facebook page that hasn't been updated in months, with no real way to browse your past projects or get in touch.
+
+Having a proper website would completely change that by giving your portfolio a dedicated, professional space where prospective clients can see your craftsmanship up close and reach out to you directly, day or night. 
+
+I would love to put together a quick homepage preview for you completely free, with zero obligations—just so you can visualize what it could look like. If you like it, great. If not, no worries at all.
+
+Would you be open to taking a look?
+
+Thanks,
+Maaz""", 
+"""Hey,
+
+I was looking through local renovation contractors recently and came across Nova Renovation Co. Seeing that many five-star reviews makes it instantly clear how much dedication and quality goes into your kitchen remodels and structural work. 
+
+The tricky part is that your current website was built back in 2017, and it hasn't quite kept pace with the quality of your actual work. Because it is slow to load, difficult to navigate on a phone, and has a broken contact form, it is likely turning away homeowners who are ready to hire someone for their next project.
+
+A modern, fast website built on platforms like Framer or Webflow would give you a seamless place to showcase your recent transformations and make it effortless for clients to reach you from their phones. You'd finally have an online presence that matches the standard of your real-world craftsmanship.
+
+I would love to put together a quick homepage preview for you, completely free and with no strings attached, so you can see what a fresh design could look like. If you like it, great. If not, no problem at all.
+
+Would you be open to taking a look?
+
+Thanks,
+Maaz""", 
+"""Hey,
+
+I came across Amber Home Design while looking at local design studios, and your portfolio really stands out—the way you pull together full room designs, furniture, and lighting is genuinely impressive. 
+
+The thing is, your website doesn't quite reflect that high-end standard. Right now, the portfolio images are low quality, there is no clear direction for someone visiting the site, and the overall feel is a bit neglected, which makes it tough for luxury clients to immediately trust your premium positioning.
+
+A proper, modern website would completely change that by presenting your full room designs in crisp, high-resolution detail and guiding prospective clients smoothly toward booking a consultation with you. 
+
+I would love to put together a quick homepage preview for you, completely free and with no strings attached, so you can see what it could look like. If you like it, great. If not, no problem at all.
+
+Would you be open to taking a look?
+
+Thanks,
+Maaz"""]
+
+businesses = dict_creator()
+list = csv_creator(businesses, emails)
+
+
+final_list = []
+
+count = 0
+for business in businesses:
+    final_dict = {}
+    final_dict["name"] = business["name"]
+    final_dict["address"] = business["address"]
+    final_dict["email_address"] = business["email"]
+    final_dict["email_copy"] = "emails[count]"
+    count += 1
+    final_list.append(final_dict)
+    print(final_dict)
+    print(final_list)
+
+with open("test_email_list.csv", "a") as csv_file:
+    writer = csv.DictWriter(csv_file, fieldnames=["name", "address", "email_address", "email_copy"])
+    for dict in final_list:
+        writer.writerow(dict)
+
